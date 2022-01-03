@@ -1,0 +1,30 @@
+<!--
+ *
+ * @author        Viha Digital Commerce Team <naeem@vdcstore.com>.
+ * @copyright     Copyright(c) 2021 Viha Digital Commerce
+ * @link          https://www.vihadigitalcommerce.com/
+ * @date          09/Sep/2021
+ -->
+<div class="custom_jewellery_appoinment">
+	<ul class="custom_jewellery_appoinment_ul" style="list-style: none;">
+		<?php
+		$i = 1;
+			foreach ($this->getAppointments() as $key => $Appointments) {
+				?>
+					<li class="custom_jewellery_appoinment_li">
+						<div class="section1">
+							<h2>Custom Jewelry Appointment</h2>
+							<span><?php echo $this->getBrand($Appointments->getAppointment_branch()) . ' ' . 'Branch';?></span><br>
+							<span><?php echo $newDate = date("d M Y", strtotime($Appointments->getAppointment_date()));?></span>
+							<span><?php echo $Appointments->getAppointment_time();?></span>
+						</div>
+						<div class="section2" style="float: right;">
+							<button>Resceduel</button><br>
+							<button>Cancel</button>
+						</div>
+					</li>
+				<?php
+			}
+		?>
+	</ul>
+</div>

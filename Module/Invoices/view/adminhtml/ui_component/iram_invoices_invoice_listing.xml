@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">iram_invoices_invoice_listing.iram_invoices_invoice_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>iram_invoices_invoice_columns</spinner>
+		<deps>
+			<dep>iram_invoices_invoice_listing.iram_invoices_invoice_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add new Invoice</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="iram_invoices_invoice_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">invoice_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Iram_Invoices::Invoice</aclResource>
+		<dataProvider name="iram_invoices_invoice_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>invoice_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="iram_invoices_invoice_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">iram_invoices_invoice_listing.iram_invoices_invoice_listing.iram_invoices_invoice_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">invoice_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="iram_invoices/Invoice/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">iram_invoices_invoice_listing.iram_invoices_invoice_listing.iram_invoices_invoice_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>invoice_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="invoice_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="invoice_number">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Invoice Number</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<actionsColumn name="actions" class="Iram\Invoices\Ui\Component\Listing\Column\InvoiceActions">
+			<settings>
+				<indexField>invoice_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+			</settings>
+		</actionsColumn>
+		<column name="customer_no" class="Iram\Invoices\Ui\Component\Listing\Column\Customer">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Purchased By</label>
+			</settings>
+		</column>
+		<column name="invoice_type">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Invoice Type</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="branch_name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Branch</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="total_amounts">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Total Amount</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="date">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Date</label>
+				<editor>
+					<editorType>date</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+	</columns>
+</listing>

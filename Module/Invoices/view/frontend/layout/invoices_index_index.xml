@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+	<body>
+		<move element="messages" destination="page.main.title" after='-' />
+		<referenceContainer name="content">
+			<block name="index.index" class="Iram\Invoices\Block\Index\Index" template="Iram_Invoices::index/index.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

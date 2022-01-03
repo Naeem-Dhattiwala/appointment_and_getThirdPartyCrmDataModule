@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--
+ *
+ * @author        Viha Digital Commerce Team <naeem@vdcstore.com>.
+ * @copyright     Copyright(c) 2021 Viha Digital Commerce
+ * @link          https://www.vihadigitalcommerce.com/
+ * @date          09/Sep/2021
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="Iram_Appointments">
+		<sequence>
+		 	<module name="Amasty_Storelocator" />
+            <module name="Magento_Customer" />
+        </sequence>
+    </module>
+</config>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Iram\Invoices\Api\InvoiceRepositoryInterface" type="Iram\Invoices\Model\InvoiceRepository"/>
+	<preference for="Iram\Invoices\Api\Data\InvoiceInterface" type="Iram\Invoices\Model\Data\Invoice"/>
+	<preference for="Iram\Invoices\Api\Data\InvoiceSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Iram\Invoices\Model\ResourceModel\Invoice\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">iram_invoices_invoice</argument>
+			<argument name="resourceModel" xsi:type="string">Iram\Invoices\Model\ResourceModel\Invoice\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="iram_invoices_invoice_listing_data_source" xsi:type="string">Iram\Invoices\Model\ResourceModel\Invoice\Grid\Collection</item>
+				<item name="iram_invoices_invoicedetails_listing_data_source" xsi:type="string">Iram\Invoices\Model\ResourceModel\InvoiceDetails\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="Iram\Invoices\Api\InvoiceDetailsRepositoryInterface" type="Iram\Invoices\Model\InvoiceDetailsRepository"/>
+	<preference for="Iram\Invoices\Api\Data\InvoiceDetailsInterface" type="Iram\Invoices\Model\Data\InvoiceDetails"/>
+	<preference for="Iram\Invoices\Api\Data\InvoiceDetailsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Iram\Invoices\Model\ResourceModel\InvoiceDetails\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">iram_invoices_invoicedetails</argument>
+			<argument name="resourceModel" xsi:type="string">Iram\Invoices\Model\ResourceModel\InvoiceDetails\Collection</argument>
+		</arguments>
+	</virtualType>
+</config>

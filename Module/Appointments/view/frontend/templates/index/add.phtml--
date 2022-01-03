@@ -1,0 +1,72 @@
+<!--
+ *
+ * @author        Viha Digital Commerce Team <naeem@vdcstore.com>.
+ * @copyright     Copyright(c) 2021 Viha Digital Commerce
+ * @link          https://www.vihadigitalcommerce.com/
+ * @date          09/Sep/2021
+ -->
+<div class="appointment_block_header">
+	<h2>BOOK APPointement</h2>
+	<p>Please fill the required fields to book appointment</p>
+</div>
+<div class="appointment_block" style="display: inline-block;">
+	<div class="appointment_form" style="float: left;">
+		<div class="book_appointment_form">
+			<form class="form appointment" action="<?php echo $this->getUrl('appointments/index/save', ['_secure' => true]);?>" id="appointment_form" method="post" data-hasrequired="<?php  echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+	        <fieldset class="fieldset">
+	      	<div class="appointment-branch">
+		     		<label class="label" for="appointment_branch">
+		     			<span><?php  echo __('Preferred Brach') ?></span>
+		     		</label>
+						<div class="control">
+		 					<select style="background: black;" name="appointment_branch" id="appointment_branch">
+		 						<option id="0" value=""><?php echo __('Please Choose')?></option>
+		 						<?php
+		 							foreach ($this->getBrand() as $Brands) {
+		 								?>
+		 									<option id="<?php echo __($Brands->getSchedule())?>" value="<?php echo __($Brands->getId())?>"><?php echo __($Brands->getName())?></option>
+		 								<?php
+		 							}
+		 						?>
+		          </select>
+		          <span id="branch_error" style="color: red;display: none;"><?php echo __('Please select Branch');?></span>
+		 				</div>
+		 			</div>
+		 			<div class="appointment-date">
+						<label class="label" for="appointment_date">
+		       		<span><?php  echo __('Preferred Date') ?></span>
+		       	</label>
+		       	<div class="control">
+		       		<input type="text" style="background: black;" class="input-text" id="appointment_date" style="width: auto" name="appointment_date" />
+		       	</div>
+	       		<span id="day_error" style="color: red;display: none;"><?php echo __('Please select Date');?></span>
+	       	</div>
+	       	<div class="appointment-time">
+		       	<label class="label" for="appointment_time">
+		       		<span><?php  echo __('Preferred Time') ?></span>
+		       	</label>
+		       	<div class="control">
+		       		<select style="background: black;" name="appointment_time" id="appointment_time">
+								<option id="0" value=""><?php echo __('Please Choose')?></option>
+							</select>
+							<span id="closed_day" style="color: red;display: none;"><?php echo __('Closed Day');?></span>
+							<span id="time_error" style="color: red;display: none;"><?php echo __('Please Select time.');?></span>
+							<span id="diff_error" style="color: red;display: none;"><?php echo __('Please Book a Slot at least 24 hours before.');?></span>
+		       	</div>
+		      </div>
+		      <input type="hidden" name="customer_id" value="<?php echo $this->getCustomerId();?>">
+	      </fieldset>		 
+	      <div class="actions-toolbar">
+	        <div class="primary">
+	         	<button type="submit" title="<?php  echo __('Submit') ?>" class="action submit primary" id="custom_btn">
+	         		<span><?php  echo __('Submit') ?></span>
+	         	</button>
+	        </div>
+	      </div>
+	  	</form>
+		</div>
+	</div>
+	<div class="book_appointment_image" style="float: right; padding-left: 580px;">
+		<img src="<?php echo $this->getViewFileUrl('Iram_Appointments::images/book_appointments.jpg'); ?>" />
+	</div>
+</div>

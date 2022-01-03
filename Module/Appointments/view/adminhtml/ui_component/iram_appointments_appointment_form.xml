@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<!--
+ *
+ * @author        Viha Digital Commerce Team <naeem@vdcstore.com>.
+ * @copyright     Copyright(c) 2021 Viha Digital Commerce
+ * @link          https://www.vihadigitalcommerce.com/
+ * @date          09/Sep/2021
+ -->
+ 
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">iram_appointments_appointment_form.appointment_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Iram\Appointments\Block\Adminhtml\Appointment\Edit\BackButton"/>
+			<button name="delete" class="Iram\Appointments\Block\Adminhtml\Appointment\Edit\DeleteButton"/>
+			<button name="save" class="Iram\Appointments\Block\Adminhtml\Appointment\Edit\SaveButton"/>
+			<button name="save_and_continue" class="Iram\Appointments\Block\Adminhtml\Appointment\Edit\SaveAndContinueButton"/>
+		</buttons>
+		<namespace>iram_appointments_appointment_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>iram_appointments_appointment_form.appointment_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="appointment_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="appointment_form_data_source" class="Iram\Appointments\Model\Appointment\DataProvider">
+			<settings>
+				<requestFieldName>appointment_id</requestFieldName>
+				<primaryFieldName>appointment_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="customer_id">
+			<argument name="data" xsi:type="array">
+			    <item name="options" xsi:type="object">Iram\Appointments\Model\Appointment\Attribute\Source\Customer</item>
+			    <item name="config" xsi:type="array">
+			        <item name="dataType" xsi:type="string">text</item>
+			        <item name="label" translate="true" xsi:type="string">Customer</item>
+			        <item name="formElement" xsi:type="string">select</item>
+			        <item name="source" xsi:type="string">Appointment</item>
+			        <item name="disabled" xsi:type="string">true</item>
+			        <item name="sortOrder" xsi:type="number">30</item>
+			        <item name="dataScope" xsi:type="string">customer_id</item>
+			        <item name="validation" xsi:type="array">
+			            <item name="required-entry" xsi:type="boolean">false</item>
+			        </item>
+			    </item>
+			</argument>
+		</field>
+		<!-- <field name="status" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Appointment</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Status</label>
+				<dataScope>status</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field> -->
+		<field name="status">
+			<argument name="data" xsi:type="array">
+			    <item name="options" xsi:type="object">Iram\Appointments\Model\Appointment\Attribute\Source\AppointmentsStatus</item>
+			    <item name="config" xsi:type="array">
+			        <item name="dataType" xsi:type="string">text</item>
+			        <item name="label" translate="true" xsi:type="string">Status</item>
+			        <item name="formElement" xsi:type="string">select</item>
+			        <item name="source" xsi:type="string">Appointment</item>
+			        <item name="sortOrder" xsi:type="number">20</item>
+			        <item name="dataScope" xsi:type="string">status</item>
+			        <item name="validation" xsi:type="array">
+			            <item name="required-entry" xsi:type="boolean">false</item>
+			        </item>
+			    </item>
+			</argument>
+		</field>
+		<!-- <field name="appointment_branch" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Appointment</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Branch</label>
+				<dataScope>appointment_branch</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field> -->
+		<field name="appointment_branch">
+			<argument name="data" xsi:type="array">
+			    <item name="options" xsi:type="object">Iram\Appointments\Ui\Component\Listing\Column\Branch</item>
+			    <item name="config" xsi:type="array">
+			        <item name="dataType" xsi:type="string">text</item>
+			        <item name="label" translate="true" xsi:type="string">Branch</item>
+			        <item name="formElement" xsi:type="string">select</item>
+			        <item name="source" xsi:type="string">Appointment</item>
+			        <item name="sortOrder" xsi:type="number">10</item>
+			        <item name="dataScope" xsi:type="string">appointment_branch</item>
+			        <item name="validation" xsi:type="array">
+			            <item name="required-entry" xsi:type="boolean">false</item>
+			        </item>
+			    </item>
+			</argument>
+		</field>
+		<field name="employee">
+			<argument name="data" xsi:type="array">
+			    <item name="options" xsi:type="object">Iram\Appointments\Model\Appointment\Attribute\Source\Employee</item>
+			    <item name="config" xsi:type="array">
+			        <item name="dataType" xsi:type="string">text</item>
+			        <item name="label" translate="true" xsi:type="string">Select Employee</item>
+			        <item name="formElement" xsi:type="string">select</item>
+			        <item name="source" xsi:type="string">Appointment</item>
+			        <item name="sortOrder" xsi:type="number">40</item>
+			        <item name="dataScope" xsi:type="string">employee</item>
+			        <item name="validation" xsi:type="array">
+			            <item name="required-entry" xsi:type="boolean">false</item>
+			        </item>
+			    </item>
+			</argument>
+		</field>
+		<field name="appointment_date" formElement="date" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Appointment</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Appointment Date</label>
+				<dataScope>appointment_date</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="appointment_time" formElement="input" sortOrder="60">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Appointment</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Appointment Time</label>
+				<dataScope>appointment_time</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="reason" formElement="textarea" sortOrder="70">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Appointment</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Rejection Reason</label>
+				<dataScope>reason</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+</form>

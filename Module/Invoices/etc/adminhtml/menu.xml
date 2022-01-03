@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Iram_Invoices::iram_invoices" title="Iram Invoice" module="Iram_Invoices" parent="Vdc::PromotionsAndOffers" sortOrder="30"  resource="Magento_Backend::content"/>
+
+		<add id="Iram_Invoices::iram_invoices_invoice" title="Invoice" module="Iram_Invoices" sortOrder="10" resource="Magento_Backend::content" parent="Iram_Invoices::iram_invoices" action="iram_invoices/invoice/index"/>
+
+		<add id="Iram_Invoices::iram_invoices_invoicedetails" title="InvoiceDetails" module="Iram_Invoices" sortOrder="20" resource="Magento_Backend::content" parent="Iram_Invoices::iram_invoices" action="iram_invoices/invoicedetails/index"/>
+	</menu>
+</config>

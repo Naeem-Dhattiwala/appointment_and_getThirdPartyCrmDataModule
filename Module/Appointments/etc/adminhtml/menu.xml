@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+ *
+ * @author        Viha Digital Commerce Team <naeem@vdcstore.com>.
+ * @copyright     Copyright(c) 2021 Viha Digital Commerce
+ * @link          https://www.vihadigitalcommerce.com/
+ * @date          09/Sep/2021
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+        <add id="Iram_Invoices::iram_appointments" title="Iram Appointment" module="Iram_Appointments" parent="Vdc::PromotionsAndOffers" sortOrder="20"  resource="Magento_Backend::content"/>
+
+		<add id="Iram_Appointments::iram_appointments_appointment" title="Appointment" module="Iram_Appointments" sortOrder="10" resource="Magento_Backend::content" parent="Iram_Invoices::iram_appointments" action="iram_appointments/appointment/index"/>
+
+        <add id="Iram_Appointments::iram_appointments_slot_per_emp" title="Slots Per Employee" module="Iram_Appointments" sortOrder="20" resource="Magento_Backend::content" parent="Iram_Invoices::iram_appointments" action="adminhtml/system_config/edit/section/iram"/>
+	</menu>
+</config>

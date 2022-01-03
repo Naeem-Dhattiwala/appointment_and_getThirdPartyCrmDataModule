@@ -1,0 +1,37 @@
+<?php if(count($this->getPurchaseHistory()) != 0):?>
+	<div class="customer_purchase_history_section">
+		<ul class="customer_purchase_history_ul">
+			<?php
+				foreach ($this->getPurchaseHistory() as $value) {
+					foreach ($this->getPurchaseHistoryDetails($value->getInvoice_number()) as $value2) {
+						?>
+						<li class="customer_purchase_history_ul" style="list-style: none;">
+							<?php
+								$product = $this->getProduct($value2->getSerial_no());
+							?>
+							<div class="customer_purchase_history_li_left" style="float: left;padding: 2px 17px 1px 0px;">
+								<img class="product_image" src="<?php echo $this->escapeUrl($this->getProductUrl().$product->getImage())?>" height="100" width="100">
+							</div>
+							<div class="customer_purchase_history_li_right">
+								<span class="invoice_number"><?php echo $this->escapeHtml('Order ID'.' '.$value2->getInvoice_number());?></span><br>
+								<span class="product_name"><?php echo $this->escapeHtml($product->getName());?></span><br>
+								<span class="invoice_order_date">
+									<?php 
+										$date = date_create($value->getDate());
+										echo $this->escapeHtml(date_format($date,"d").' '.date_format($date,"M").' '.date_format($date,"Y"));
+									?>
+								</span><br>
+								<span class="invoice_order_branch"><?php echo $this->escapeHtml($value->getBranch_name() .' ' . 'Branch');?></span>
+								<br>
+								<span class="invoice_product_price"><?php echo $this->escapeHtml('EGP'.' '.$value2->getAmount());?></span>
+							</div>
+						</li>
+						<?php
+					}
+				}
+			?>
+		</ul>
+	</div>
+<?php else : ?>
+	<?php echo 'You have no items in your Purchase History.';?>
+<?php endif; ?>

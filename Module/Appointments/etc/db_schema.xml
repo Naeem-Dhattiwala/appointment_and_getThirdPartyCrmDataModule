@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!--
+ *
+ * @author        Viha Digital Commerce Team <naeem@vdcstore.com>.
+ * @copyright     Copyright(c) 2021 Viha Digital Commerce
+ * @link          https://www.vihadigitalcommerce.com/
+ * @date          09/Sep/2021
+ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="iram_appointments_appointment" resource="default" engine="innodb" comment="iram_appointments_appointment Table">
+		<column xsi:type="smallint" name="appointment_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Appointments Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="appointment_id"/>
+		</constraint>
+		<column name="customer_id" nullable="true" xsi:type="int" identity="false" comment="Customer Id"/>
+		<column name="status" nullable="true" xsi:type="varchar" default="1" comment="Status" length="255"/>
+		<column name="appointment_branch" nullable="true" xsi:type="varchar" comment="Appointment Branch" length="255"/>
+		<column name="appointment_date" nullable="true" xsi:type="date" comment="Appointment Date"/>
+		<column name="appointment_time" nullable="true" xsi:type="varchar" comment="Appointment Time" length="255"/>
+		<column name="employee" nullable="true" xsi:type="varchar" comment="Employee" length="255"/>
+		<column name="reason" nullable="true" xsi:type="text" comment="Reason"/>
+	</table>
+</schema>

@@ -1,0 +1,181 @@
+<?xml version="1.0" ?>
+<!--
+ *
+ * @author        Viha Digital Commerce Team <naeem@vdcstore.com>.
+ * @copyright     Copyright(c) 2021 Viha Digital Commerce
+ * @link          https://www.vihadigitalcommerce.com/
+ * @date          09/Sep/2021
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">iram_appointments_appointment_listing.iram_appointments_appointment_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>iram_appointments_appointment_columns</spinner>
+		<deps>
+			<dep>iram_appointments_appointment_listing.iram_appointments_appointment_listing_data_source</dep>
+		</deps>
+		<!--<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add new Appointment</label>
+			</button>
+		</buttons>-->
+	</settings>
+	<dataSource name="iram_appointments_appointment_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">appointment_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Iram_Appointments::Appointment</aclResource>
+		<dataProvider name="iram_appointments_appointment_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>appointment_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="iram_appointments_appointment_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">iram_appointments_appointment_listing.iram_appointments_appointment_listing.iram_appointments_appointment_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">appointment_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="iram_appointments/Appointment/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">iram_appointments_appointment_listing.iram_appointments_appointment_listing.iram_appointments_appointment_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>appointment_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="appointment_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="customer_id" class="Iram\Appointments\Ui\Component\Listing\Column\Customer">
+		    <settings>
+				<!-- <filter>text</filter> -->
+				<label translate="true">Customer</label>
+			</settings>
+		</column>
+		<actionsColumn name="actions" class="Iram\Appointments\Ui\Component\Listing\Column\AppointmentActions">
+			<settings>
+				<indexField>appointment_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+			</settings>
+		</actionsColumn>
+		<column name="status">
+		    <argument name="data" xsi:type="array">
+		        <item name="options" xsi:type="object">Iram\Appointments\Ui\Component\Listing\Column\Status</item>
+		        <item name="config" xsi:type="array">
+		            <item name="filter" xsi:type="string">select</item>
+		            <item name="label" xsi:type="string" translate="true">Status</item>
+		            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+		            <item name="dataType" xsi:type="string">select</item>
+		            <item name="editor" xsi:type="array">
+		                <item name="editorType" xsi:type="string">select</item>
+		                <item name="validation" xsi:type="array">
+		                    <item name="required-entry" xsi:type="boolean">false</item>
+		                </item>
+		            </item>
+		        </item>
+		    </argument>
+		</column>
+		<column name="appointment_branch">
+            <argument name="data" xsi:type="array">
+		        <item name="options" xsi:type="object">Iram\Appointments\Ui\Component\Listing\Column\Branch</item>
+		        <item name="config" xsi:type="array">
+		            <item name="filter" xsi:type="string">select</item>
+		            <item name="label" xsi:type="string" translate="true">Branch</item>
+		            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+		            <item name="dataType" xsi:type="string">select</item>
+		            <item name="editor" xsi:type="array">
+		                <item name="editorType" xsi:type="string">select</item>
+		                <item name="validation" xsi:type="array">
+		                    <item name="required-entry" xsi:type="boolean">false</item>
+		                </item>
+		            </item>
+		        </item>
+		    </argument>
+		</column>
+		<column name="appointment_date">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Appointment Date</label>
+				<editor>
+					<editorType>Date</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="appointment_time">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Appointment Time</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="employee">
+			<argument name="data" xsi:type="array">
+		        <item name="options" xsi:type="object">Iram\Appointments\Ui\Component\Listing\Column\Employee</item>
+		        <item name="config" xsi:type="array">
+		            <item name="filter" xsi:type="string">select</item>
+		            <item name="label" xsi:type="string" translate="true">Employee</item>
+		            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+		            <item name="dataType" xsi:type="string">select</item>
+		        </item>
+		    </argument>
+		</column>
+		<column name="reason">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Reason</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+	</columns>
+</listing>
